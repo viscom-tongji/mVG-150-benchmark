@@ -21,7 +21,7 @@ maskrcnn_benchmark/modeling/roi_heads/relation_head/roi_relation_predictors.py
 
 ```bash
 conda create -n penet-lite python=3.8
-conda activate penet-lite
+conda activate SPG_SGG
 python setup.py build develop
 ```
 
