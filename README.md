@@ -6,7 +6,6 @@ This repository contains **Super-Predicate-Guided Scene Graph Generation (SPG-SG
 
 Download the mVG-150 dataset from [Click here](https://kaggle.com/datasets/32b51bdeb1e69c36f0c502d4388486d1afa7bc2ab9e8e032a240fa1fe8d38bbd).
 
-Place the dataset files under `datasets/mVG-150/` and update the dataset paths in `maskrcnn_benchmark/config/paths_catalog.py`.
 
 ## Model
 
