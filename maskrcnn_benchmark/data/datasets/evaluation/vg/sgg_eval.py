@@ -771,6 +771,9 @@ Evaluates recall with weighted scoring based on predicate categories.
 For the same object pair, predicates are aggregated and weighted by category coverage.
 """
 class SGCategoryWeightedRecall(SceneGraphEvaluation):
+    METRIC_NAME = "DA-R"
+    METRIC_TYPE = "Diversity-Aware Recall"
+
     # Predicate category definitions
     PREDICATE_CATEGORIES = {
         "Spatial-Positional": [
@@ -831,8 +834,12 @@ class SGCategoryWeightedRecall(SceneGraphEvaluation):
     def generate_print_string(self, mode):
         result_str = 'SGG eval: '
         for k, v in self.result_dict[mode + '_category_weighted_recall'].items():
-            result_str += ' DA-R @ %d: %.4f; ' % (k, np.mean(v) if len(v) > 0 else 0.0)
-        result_str += ' for mode=%s, type=Diversity-Aware Recall.' % mode
+            result_str += '%s @ %d: %.4f; ' % (
+                self.METRIC_NAME,
+                k,
+                np.mean(v) if len(v) > 0 else 0.0,
+            )
+        result_str += ' for mode=%s, type=%s.' % (mode, self.METRIC_TYPE)
         result_str += '\n'
         return result_str
 
@@ -1035,6 +1042,9 @@ DA-mR@K = average of Recall_c for all categories c present in the image
 This metric uses No Graph Constraint setting and handles duplicate predictions.
 """
 class SGNGCategoryWeightedMeanRecall(SceneGraphEvaluation):
+    METRIC_NAME = "DA-mR"
+    METRIC_TYPE = "Diversity-Aware Mean Recall"
+
     # Use the same predicate category definitions as SGCategoryWeightedRecall
     PREDICATE_CATEGORIES = SGCategoryWeightedRecall.PREDICATE_CATEGORIES
 
@@ -1074,8 +1084,8 @@ class SGNGCategoryWeightedMeanRecall(SceneGraphEvaluation):
     def generate_print_string(self, mode):
         result_str = 'SGG eval: '
         for k, v in self.result_dict[mode + '_ng_category_weighted_mean_recall'].items():
-            result_str += 'DA-mR @ %d: %.4f; ' % (k, float(v))
-        result_str += ' for mode=%s, type=Diversity-Aware Mean Recall.' % mode
+            result_str += '%s @ %d: %.4f; ' % (self.METRIC_NAME, k, float(v))
+        result_str += ' for mode=%s, type=%s.' % (mode, self.METRIC_TYPE)
         result_str += '\n'
         if self.print_detail:
             result_str += '----------------------- Category Details ------------------------\n'
