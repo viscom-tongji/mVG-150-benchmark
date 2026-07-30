@@ -47,8 +47,6 @@ CUDA_VISIBLE_DEVICES=0 python3 tools/relation_test_net.py \
 
 ## Diversity-Aware Metrics
 
-For each subject-object pair, `DA-R@K` measures how many of its valid ground-truth predicates are recovered by the top-K relation predictions. `DA-mR@K` first computes this recall for each predicate class and then averages across classes, reducing the influence of frequent predicates. Predicting more distinct, correct relations therefore improves the DA scores.
-
 The relation log includes standard `R`, `mR`, `ng-R`, and the renamed diversity-aware metrics:
 
 ```text
